@@ -31,8 +31,7 @@
   </picture>
 </p>
 
-## 📊 Linguagens mais usadas
-![Most Used Languages](./assets/most-used-languages.svg)
+![Most Used Languages](https://github.com/edson-k/edson-k/raw/main/assets/most-used-languages.svg)
 
 <h2>🛠️ Linguagens e ferramentas</h2>
 

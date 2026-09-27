@@ -5,12 +5,57 @@ import urllib.request
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+
 USERNAME = os.environ.get("GITHUB_USERNAME", "edson-k")
 TOKEN = os.environ.get("GH_STATS_TOKEN", "")
+
+# Quantas linguagens mostrar no card
 TOP_N = 10
 
+# Owners que SERÃO contabilizados.
+# Qualquer owner fora daqui será ignorado.
+INCLUDE_OWNERS = {
+    "edson-k",
+    "RedBerryLTDA",
+    "BanzaiAnimes",
+}
+
+# Repositórios específicos que você NÃO quer contabilizar.
+#
+# Sempre use:
+# "OWNER/NOME-DO-REPOSITORIO"
+#
+EXCLUDE_REPOS = {
+    # Exemplos:
+    # "edson-k/projeto-antigo",
+    # "RedBerryLTDA/testes",
+    # "BanzaiAnimes/projeto-legado",
+}
+
+# Linguagens que você queira ignorar completamente.
+#
+# Eu recomendo deixar vazio por enquanto.
+# Primeiro vamos descobrir de onde está vindo aquele C.
+EXCLUDE_LANGUAGES = {
+    # "C",
+    # "Shell",
+}
+
+# Ignorar forks?
+IGNORE_FORKS = True
+
+# Arquivo gerado
 OUTPUT = Path("assets/most-used-languages.svg")
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+
+
+# ============================================================
+# CORES DAS LINGUAGENS
+# ============================================================
 
 LANG_COLORS = {
     "JavaScript": "#f1e05a",
@@ -36,155 +81,769 @@ LANG_COLORS = {
     "Rust": "#dea584",
     "Kotlin": "#A97BFF",
     "Swift": "#F05138",
+    "Dart": "#00B4AB",
+    "Lua": "#000080",
+    "PowerShell": "#012456",
+    "Batchfile": "#C1F12E",
+    "EJS": "#a91e50",
 }
 
+
 def fallback_color(name: str) -> str:
-    h = abs(hash(name)) % 360
-    return f"hsl({h}, 70%, 55%)"
+    """
+    Gera uma cor consistente para linguagens que não estiverem
+    na tabela LANG_COLORS.
+    """
+
+    # Não usamos hash() diretamente porque ele pode variar
+    # entre execuções do Python.
+    value = sum(ord(char) for char in name)
+    hue = value % 360
+
+    return f"hsl({hue}, 65%, 55%)"
+
+
+# ============================================================
+# GITHUB API
+# ============================================================
 
 def github_get(url: str):
     req = urllib.request.Request(url)
-    req.add_header("Accept", "application/vnd.github+json")
-    if TOKEN:
-        req.add_header("Authorization", f"Bearer {TOKEN}")
-    req.add_header("User-Agent", "lang-card-generator")
 
-    with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    req.add_header(
+        "Accept",
+        "application/vnd.github+json"
+    )
+
+    req.add_header(
+        "X-GitHub-Api-Version",
+        "2022-11-28"
+    )
+
+    req.add_header(
+        "User-Agent",
+        "edson-k-language-card"
+    )
+
+    if TOKEN:
+        req.add_header(
+            "Authorization",
+            f"Bearer {TOKEN}"
+        )
+
+    with urllib.request.urlopen(req) as response:
+        return json.loads(
+            response.read().decode("utf-8")
+        )
+
 
 def get_repos():
+    """
+    Busca todos os repositórios aos quais o PAT possui acesso:
+    - próprios
+    - organizações
+    - colaborador
+
+    Depois filtramos usando INCLUDE_OWNERS.
+    """
+
     repos = []
     page = 1
 
     while True:
         url = (
             "https://api.github.com/user/repos"
-            f"?visibility=all&affiliation=owner&per_page=100&page={page}"
+            "?visibility=all"
+            "&affiliation=owner,collaborator,organization_member"
+            "&sort=full_name"
+            "&direction=asc"
+            "&per_page=100"
+            f"&page={page}"
         )
+
         chunk = github_get(url)
+
         if not chunk:
             break
+
         repos.extend(chunk)
+
+        print(
+            f"Página {page}: "
+            f"{len(chunk)} repositórios encontrados"
+        )
+
         page += 1
 
     return repos
 
+
 def get_languages(owner: str, repo: str):
-    url = f"https://api.github.com/repos/{owner}/{repo}/languages"
+    """
+    Retorna quantidade de bytes por linguagem
+    segundo o GitHub Linguist.
+    """
+
+    url = (
+        f"https://api.github.com/repos/"
+        f"{owner}/{repo}/languages"
+    )
+
     return github_get(url)
+
+
+# ============================================================
+# COLETA DAS LINGUAGENS
+# ============================================================
+
+print()
+print("=" * 70)
+print("GENERATE LANGUAGE CARD")
+print("=" * 70)
+print()
+
+if not TOKEN:
+    print("ATENÇÃO: GH_STATS_TOKEN não foi informado.")
+    print("Repositórios privados provavelmente não serão encontrados.")
+    print()
+
 
 repos = get_repos()
 
+print()
+print(
+    f"Total retornado pela API: {len(repos)} repositórios"
+)
+print()
+
 totals = {}
+
+processed_repos = []
+ignored_repos = []
+
+# Isso ajuda a descobrir qual repositório
+# está dominando uma determinada linguagem.
+language_sources = {}
+
+
 for repo in repos:
-    if repo.get("fork"):
-        continue
 
     owner = repo["owner"]["login"]
     name = repo["name"]
+    full_name = repo["full_name"]
+
+    # --------------------------------------------------------
+    # OWNER
+    # --------------------------------------------------------
+
+    if owner not in INCLUDE_OWNERS:
+        print(
+            f"IGNORADO OWNER: {full_name}"
+        )
+
+        ignored_repos.append(
+            (full_name, "owner")
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # FORK
+    # --------------------------------------------------------
+
+    if IGNORE_FORKS and repo.get("fork"):
+        print(
+            f"IGNORADO FORK: {full_name}"
+        )
+
+        ignored_repos.append(
+            (full_name, "fork")
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # REPOSITÓRIO EXCLUÍDO
+    # --------------------------------------------------------
+
+    if full_name in EXCLUDE_REPOS:
+        print(
+            f"IGNORADO REPO: {full_name}"
+        )
+
+        ignored_repos.append(
+            (full_name, "exclude")
+        )
+
+        continue
+
+    # --------------------------------------------------------
+    # BUSCAR LINGUAGENS
+    # --------------------------------------------------------
 
     try:
-        langs = get_languages(owner, name)
+
+        langs = get_languages(
+            owner,
+            name
+        )
+
+        processed_repos.append(
+            full_name
+        )
+
+        print()
+        print(
+            f"📦 {full_name}"
+        )
+
+        if repo.get("private"):
+            print(
+                "   🔒 PRIVATE"
+            )
+        else:
+            print(
+                "   🌎 PUBLIC"
+            )
+
+        if not langs:
+            print(
+                "   Sem linguagens detectadas."
+            )
+
         for lang, value in langs.items():
-            totals[lang] = totals.get(lang, 0) + value
-    except Exception as e:
-        print(f"Erro ao processar {owner}/{name}: {e}")
 
-sorted_langs = sorted(totals.items(), key=lambda x: x[1], reverse=True)
-top_langs = sorted_langs[:TOP_N]
+            if lang in EXCLUDE_LANGUAGES:
+                print(
+                    f"   IGNORADA: {lang}"
+                )
 
-total_bytes = sum(v for _, v in top_langs) or 1
+                continue
+
+            print(
+                f"   {lang:<20} "
+                f"{value:>12,} bytes"
+            )
+
+            totals[lang] = (
+                totals.get(lang, 0)
+                + value
+            )
+
+            if lang not in language_sources:
+                language_sources[lang] = []
+
+            language_sources[lang].append(
+                (
+                    full_name,
+                    value
+                )
+            )
+
+            # ------------------------------------------------
+            # DEBUG ESPECIAL PARA C
+            # ------------------------------------------------
+
+            if lang == "C":
+
+                print(
+                    f"   ⚠️  C ENCONTRADO: "
+                    f"{value:,} bytes"
+                )
+
+    except Exception as error:
+
+        print()
+        print(
+            f"❌ ERRO: {full_name}"
+        )
+
+        print(
+            f"   {error}"
+        )
+
+
+# ============================================================
+# RELATÓRIO
+# ============================================================
+
+print()
+print("=" * 70)
+print("RESUMO")
+print("=" * 70)
+
+print()
+print(
+    f"Processados: {len(processed_repos)}"
+)
+
+print(
+    f"Ignorados: {len(ignored_repos)}"
+)
+
+print()
+
+
+# ============================================================
+# DESCOBRIR DE ONDE VEM O C
+# ============================================================
+
+if "C" in language_sources:
+
+    print()
+    print("=" * 70)
+    print("⚠️  REPOSITÓRIOS COM C")
+    print("=" * 70)
+
+    c_sources = sorted(
+        language_sources["C"],
+        key=lambda item: item[1],
+        reverse=True
+    )
+
+    for repo_name, value in c_sources:
+
+        print(
+            f"{repo_name:<50} "
+            f"{value:>15,} bytes"
+        )
+
+    print()
+
+
+# ============================================================
+# TOTAL POR LINGUAGEM
+# ============================================================
+
+sorted_all_languages = sorted(
+    totals.items(),
+    key=lambda item: item[1],
+    reverse=True
+)
+
+grand_total = sum(
+    value
+    for _, value in sorted_all_languages
+)
+
+print()
+print("=" * 70)
+print("TOTAL POR LINGUAGEM")
+print("=" * 70)
+print()
+
+for lang, value in sorted_all_languages:
+
+    pct = (
+        value / grand_total * 100
+        if grand_total
+        else 0
+    )
+
+    print(
+        f"{lang:<20} "
+        f"{value:>15,} bytes "
+        f"{pct:>7.2f}%"
+    )
+
+
+# ============================================================
+# TOP N
+# ============================================================
+
+top_languages = sorted_all_languages[
+    :TOP_N
+]
+
+displayed_total = sum(
+    value
+    for _, value in top_languages
+)
 
 items = []
-for lang, value in top_langs:
-    pct = (value / total_bytes) * 100
-    color = LANG_COLORS.get(lang, fallback_color(lang))
+
+for lang, value in top_languages:
+
+    # Percentual REAL considerando TODAS as linguagens.
+    real_pct = (
+        value / grand_total * 100
+        if grand_total
+        else 0
+    )
+
+    # Percentual usado somente para desenhar a barra,
+    # normalizando os TOP_N para ocupar 100% da largura.
+    bar_pct = (
+        value / displayed_total * 100
+        if displayed_total
+        else 0
+    )
+
+    color = LANG_COLORS.get(
+        lang,
+        fallback_color(lang)
+    )
+
     items.append({
         "name": lang,
-        "pct": pct,
-        "color": color
+        "value": value,
+        "pct": real_pct,
+        "bar_pct": bar_pct,
+        "color": color,
     })
 
-# ===== VISUAL DO CARD =====
-width = 700
-height = 240
-padding = 24
+
+# ============================================================
+# CARD SVG
+# ============================================================
+
+# Quantidade de linhas necessárias
+half = math.ceil(
+    len(items) / 2
+)
+
+rows = half
+
+
+# ------------------------------------------------------------
+# CONFIGURAÇÃO VISUAL
+# ------------------------------------------------------------
+
+width = 520
+
+padding = 26
 
 bg_color = "#1B1F2A"
-border_color = "#CFCFD4"
-title_color = "#5EA0FF"
+border_color = "#C8CBD0"
+
+title_color = "#6CA6FF"
 text_color = "#D8E1EB"
 
 title_y = 40
-bar_x = padding
+
+
+# ------------------------------------------------------------
+# BARRA
+# ------------------------------------------------------------
+
+bar_x = 26
 bar_y = 60
-bar_width = width - padding * 2
-bar_height = 14
-radius = 7
 
-left_x = 34
-right_x = width // 2 + 15
-legend_start_y = 105
-row_gap = 32
-dot_r = 5
-
-def rect(x, y, w, h, fill, rx=0, stroke=None, stroke_width=None):
-    s = f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}"'
-    if rx:
-        s += f' rx="{rx}"'
-    if stroke:
-        s += f' stroke="{stroke}"'
-    if stroke_width:
-        s += f' stroke-width="{stroke_width}"'
-    s += '/>'
-    return s
-
-svg = []
-svg.append(f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">')
-
-# fundo
-svg.append(rect(1, 1, width - 2, height - 2, bg_color, rx=10, stroke=border_color, stroke_width=2))
-
-# título
-svg.append(
-    f'<text x="{padding}" y="{title_y}" fill="{title_color}" '
-    f'font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">'
-    f'Most Used Languages</text>'
+bar_width = (
+    width - 52
 )
 
-# barra colorida
-svg.append(rect(bar_x, bar_y, bar_width, bar_height, "#2A3040", rx=radius))
+bar_height = 10
+bar_radius = 5
 
-current_x = bar_x
-for i, item in enumerate(items):
-    seg_w = round((item["pct"] / 100) * bar_width, 2)
 
-    # evitar segmentozinhos invisíveis
-    if seg_w < 6:
-        seg_w = 6
+# ------------------------------------------------------------
+# LEGENDA
+# ------------------------------------------------------------
 
-    rx = radius if i == 0 else 0
-    svg.append(rect(current_x, bar_y, seg_w, bar_height, item["color"], rx=rx))
-    current_x += seg_w
+left_x = 32
+right_x = 275
 
-# legenda em 2 colunas
-half = math.ceil(len(items) / 2)
+legend_start_y = 102
 
-for idx, item in enumerate(items):
-    col = 0 if idx < half else 1
-    row = idx if col == 0 else idx - half
+row_gap = 30
 
-    x = left_x if col == 0 else right_x
-    y = legend_start_y + row * row_gap
+dot_r = 5
 
-    svg.append(f'<circle cx="{x}" cy="{y}" r="{dot_r}" fill="{item["color"]}"/>')
-    label = f'{escape(item["name"])} {item["pct"]:.2f}%'
-    svg.append(
-        f'<text x="{x + 14}" y="{y + 5}" fill="{text_color}" '
-        f'font-family="Segoe UI, Arial, sans-serif" font-size="15">{label}</text>'
+bottom_padding = 24
+
+
+# ------------------------------------------------------------
+# ALTURA AUTOMÁTICA
+# ------------------------------------------------------------
+
+if rows > 0:
+
+    last_row_y = (
+        legend_start_y
+        + ((rows - 1) * row_gap)
     )
 
-svg.append("</svg>")
+    height = (
+        last_row_y
+        + bottom_padding
+        + 10
+    )
 
-OUTPUT.write_text("\n".join(svg), encoding="utf-8")
-print(f"Generated: {OUTPUT}")
+else:
+
+    height = 120
+
+
+# ============================================================
+# HELPERS SVG
+# ============================================================
+
+def rect(
+    x,
+    y,
+    w,
+    h,
+    fill,
+    rx=0,
+    stroke=None,
+    stroke_width=None,
+):
+
+    element = (
+        f'<rect '
+        f'x="{x}" '
+        f'y="{y}" '
+        f'width="{w}" '
+        f'height="{h}" '
+        f'fill="{fill}"'
+    )
+
+    if rx:
+
+        element += (
+            f' rx="{rx}"'
+        )
+
+    if stroke:
+
+        element += (
+            f' stroke="{stroke}"'
+        )
+
+    if stroke_width:
+
+        element += (
+            f' stroke-width="{stroke_width}"'
+        )
+
+    element += "/>"
+
+    return element
+
+
+def shorten(
+    text: str,
+    max_length: int = 18,
+):
+
+    if len(text) <= max_length:
+        return text
+
+    return (
+        text[:max_length - 1]
+        + "…"
+    )
+
+
+# ============================================================
+# GERAR SVG
+# ============================================================
+
+svg = []
+
+
+svg.append(
+    f'<svg '
+    f'width="{width}" '
+    f'height="{height}" '
+    f'viewBox="0 0 {width} {height}" '
+    f'xmlns="http://www.w3.org/2000/svg">'
+)
+
+
+# ------------------------------------------------------------
+# FUNDO
+# ------------------------------------------------------------
+
+svg.append(
+    rect(
+        1,
+        1,
+        width - 2,
+        height - 2,
+        bg_color,
+        rx=8,
+        stroke=border_color,
+        stroke_width=1,
+    )
+)
+
+
+# ------------------------------------------------------------
+# TÍTULO
+# ------------------------------------------------------------
+
+svg.append(
+    f'<text '
+    f'x="{padding}" '
+    f'y="{title_y}" '
+    f'fill="{title_color}" '
+    f'font-family="Segoe UI, Arial, sans-serif" '
+    f'font-size="19" '
+    f'font-weight="700">'
+    f'Linguagens mais usadas'
+    f'</text>'
+)
+
+
+# ------------------------------------------------------------
+# CLIP DA BARRA
+# ------------------------------------------------------------
+
+svg.append(
+    f'''
+<defs>
+    <clipPath id="barClip">
+        <rect
+            x="{bar_x}"
+            y="{bar_y}"
+            width="{bar_width}"
+            height="{bar_height}"
+            rx="{bar_radius}"
+        />
+    </clipPath>
+</defs>
+'''
+)
+
+
+# ------------------------------------------------------------
+# FUNDO DA BARRA
+# ------------------------------------------------------------
+
+svg.append(
+    rect(
+        bar_x,
+        bar_y,
+        bar_width,
+        bar_height,
+        "#30363D",
+        rx=bar_radius,
+    )
+)
+
+
+# ------------------------------------------------------------
+# BARRA COLORIDA
+# ------------------------------------------------------------
+
+current_x = bar_x
+
+for item in items:
+
+    segment_width = (
+        item["bar_pct"]
+        / 100
+        * bar_width
+    )
+
+    svg.append(
+        f'<rect '
+        f'x="{current_x:.2f}" '
+        f'y="{bar_y}" '
+        f'width="{segment_width:.2f}" '
+        f'height="{bar_height}" '
+        f'fill="{item["color"]}" '
+        f'clip-path="url(#barClip)"'
+        f'/>'
+    )
+
+    current_x += (
+        segment_width
+    )
+
+
+# ------------------------------------------------------------
+# ITENS
+# ------------------------------------------------------------
+
+for index, item in enumerate(items):
+
+    if index < half:
+
+        column = 0
+        row = index
+
+    else:
+
+        column = 1
+        row = (
+            index - half
+        )
+
+    x = (
+        left_x
+        if column == 0
+        else right_x
+    )
+
+    y = (
+        legend_start_y
+        + row * row_gap
+    )
+
+
+    # --------------------------------------------------------
+    # BOLINHA
+    # --------------------------------------------------------
+
+    svg.append(
+        f'<circle '
+        f'cx="{x}" '
+        f'cy="{y}" '
+        f'r="{dot_r}" '
+        f'fill="{item["color"]}"'
+        f'/>'
+    )
+
+
+    # --------------------------------------------------------
+    # TEXTO
+    # --------------------------------------------------------
+
+    language_name = shorten(
+        item["name"]
+    )
+
+    label = (
+        f'{escape(language_name)} '
+        f'{item["pct"]:.2f}%'
+    )
+
+    svg.append(
+        f'<text '
+        f'x="{x + 14}" '
+        f'y="{y + 5}" '
+        f'fill="{text_color}" '
+        f'font-family="Segoe UI, Arial, sans-serif" '
+        f'font-size="14">'
+        f'{label}'
+        f'</text>'
+    )
+
+
+svg.append(
+    "</svg>"
+)
+
+
+# ============================================================
+# SALVAR
+# ============================================================
+
+OUTPUT.write_text(
+    "\n".join(svg),
+    encoding="utf-8",
+)
+
+
+print()
+print("=" * 70)
+print(
+    f"✅ SVG GERADO: {OUTPUT}"
+)
+print(
+    f"Dimensões: {width}x{height}"
+)
+print("=" * 70)
