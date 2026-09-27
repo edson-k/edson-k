@@ -808,7 +808,7 @@ for index, item in enumerate(items):
 
     label = (
         f'{escape(language_name)} '
-        f'{item["pct"]:.2f}%'
+        f'{item["pct"]:.1f}%'
     )
 
     svg.append(
