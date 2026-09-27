@@ -31,7 +31,8 @@
   </picture>
 </p>
 
-![Linguagens mais utilizadas](https://github-readme-stats.vercel.app/api/top-langs/?username=edson-k&layout=compact&langs_count=8&card_width=360&theme=github_dark&hide_border=false&border_color=30363D&bg_color=0D1117&title_color=58A6FF&text_color=C9D1D9&custom_title=Linguagens%20mais%20utilizadas)
+## 📊 Linguagens mais usadas
+![Most Used Languages](./assets/most-used-languages.svg)
 
 <h2>🛠️ Linguagens e ferramentas</h2>
 
