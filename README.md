@@ -13,6 +13,8 @@
   Desenvolvedor Full Stack focado em criar aplicações, APIs, integrações e infraestrutura.<br>
   Gosto de transformar problemas em software — e software em containers. 🐳
 </p>
+<br/>
+<hr/>
 
 <p align="center">
   <picture>
@@ -31,7 +33,15 @@
   </picture>
 </p>
 
-![Most Used Languages](https://github.com/edson-k/edson-k/raw/main/assets/most-used-languages.svg)
+<br/>
+
+<p align="center">
+  <img
+    src="https://github.com/edson-k/edson-k/raw/main/assets/most-used-languages.svg"
+    alt="Most Used Languages"
+  >
+</p>
+<br/>
 
 <h2>🛠️ Linguagens e ferramentas</h2>
 
@@ -41,8 +51,7 @@
     alt="Tecnologias e ferramentas"
   >
 </p>
-
-
+<br/>
 <h2>🔥 Sequência de contribuições</h2>
 
 <p align="center">
@@ -51,7 +60,7 @@
     alt="GitHub Streak"
   >
 </p>
-
+<br/>
 <hr>
 
 <p align="center">
