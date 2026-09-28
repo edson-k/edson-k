@@ -15,14 +15,14 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="168.97" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="194.97" y="60" width="157.90" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="352.87" y="60" width="64.15" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="417.03" y="60" width="30.95" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="447.98" y="60" width="20.10" height="10" fill="#555555" clip-path="url(#barClip)"/>
-<rect x="468.08" y="60" width="6.83" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
-<rect x="474.91" y="60" width="6.35" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
-<rect x="481.26" y="60" width="6.30" height="10" fill="#89e051" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="168.93" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="194.93" y="60" width="158.06" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="352.99" y="60" width="64.10" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="417.09" y="60" width="30.93" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="448.01" y="60" width="20.09" height="10" fill="#555555" clip-path="url(#barClip)"/>
+<rect x="468.10" y="60" width="6.83" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
+<rect x="474.93" y="60" width="6.34" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
+<rect x="481.27" y="60" width="6.30" height="10" fill="#89e051" clip-path="url(#barClip)"/>
 <rect x="487.56" y="60" width="4.62" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
 <rect x="492.18" y="60" width="1.82" height="10" fill="#f34b7d" clip-path="url(#barClip)"/>
 <circle cx="32" cy="102" r="5" fill="#3178c6"/>
@@ -34,7 +34,7 @@
 <circle cx="32" cy="192" r="5" fill="#563d7c"/>
 <text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 6.5%</text>
 <circle cx="32" cy="222" r="5" fill="#555555"/>
-<text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">C 4.3%</text>
+<text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">C 4.2%</text>
 <circle cx="275" cy="102" r="5" fill="hsl(292, 65%, 55%)"/>
 <text x="289" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Handlebars 1.4%</text>
 <circle cx="275" cy="132" r="5" fill="#3572A5"/>
