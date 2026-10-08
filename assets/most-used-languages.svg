@@ -15,14 +15,14 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="178.69" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="204.69" y="60" width="154.03" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="358.72" y="60" width="60.70" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="419.42" y="60" width="30.83" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="450.24" y="60" width="18.58" height="10" fill="#555555" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="178.66" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="204.66" y="60" width="154.08" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="358.74" y="60" width="60.69" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="419.43" y="60" width="30.82" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="450.25" y="60" width="18.57" height="10" fill="#555555" clip-path="url(#barClip)"/>
 <rect x="468.82" y="60" width="6.31" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
 <rect x="475.13" y="60" width="5.99" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
-<rect x="481.12" y="60" width="5.82" height="10" fill="#89e051" clip-path="url(#barClip)"/>
+<rect x="481.13" y="60" width="5.82" height="10" fill="#89e051" clip-path="url(#barClip)"/>
 <rect x="486.95" y="60" width="5.37" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
 <rect x="492.32" y="60" width="1.68" height="10" fill="#f34b7d" clip-path="url(#barClip)"/>
 <circle cx="32" cy="102" r="5" fill="#3178c6"/>
@@ -30,7 +30,7 @@
 <circle cx="32" cy="132" r="5" fill="#4F5D95"/>
 <text x="46" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">PHP 32.6%</text>
 <circle cx="32" cy="162" r="5" fill="#f1e05a"/>
-<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 12.9%</text>
+<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 12.8%</text>
 <circle cx="32" cy="192" r="5" fill="#563d7c"/>
 <text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 6.5%</text>
 <circle cx="32" cy="222" r="5" fill="#555555"/>
