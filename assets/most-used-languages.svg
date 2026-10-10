@@ -15,22 +15,22 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="178.64" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="204.64" y="60" width="154.13" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="358.77" y="60" width="60.67" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="419.44" y="60" width="30.82" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="450.26" y="60" width="18.57" height="10" fill="#555555" clip-path="url(#barClip)"/>
-<rect x="468.83" y="60" width="6.31" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
-<rect x="475.14" y="60" width="5.99" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
-<rect x="481.13" y="60" width="5.82" height="10" fill="#89e051" clip-path="url(#barClip)"/>
-<rect x="486.95" y="60" width="5.37" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
-<rect x="492.32" y="60" width="1.68" height="10" fill="#f34b7d" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="179.18" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="205.18" y="60" width="154.95" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="360.13" y="60" width="60.01" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="420.14" y="60" width="30.49" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="450.63" y="60" width="18.37" height="10" fill="#555555" clip-path="url(#barClip)"/>
+<rect x="469.00" y="60" width="6.24" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
+<rect x="475.24" y="60" width="6.02" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
+<rect x="481.27" y="60" width="5.76" height="10" fill="#89e051" clip-path="url(#barClip)"/>
+<rect x="487.03" y="60" width="5.31" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
+<rect x="492.34" y="60" width="1.66" height="10" fill="#f34b7d" clip-path="url(#barClip)"/>
 <circle cx="32" cy="102" r="5" fill="#3178c6"/>
-<text x="46" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 37.8%</text>
+<text x="46" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 37.9%</text>
 <circle cx="32" cy="132" r="5" fill="#4F5D95"/>
-<text x="46" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">PHP 32.6%</text>
+<text x="46" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">PHP 32.8%</text>
 <circle cx="32" cy="162" r="5" fill="#f1e05a"/>
-<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 12.8%</text>
+<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 12.7%</text>
 <circle cx="32" cy="192" r="5" fill="#563d7c"/>
 <text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 6.5%</text>
 <circle cx="32" cy="222" r="5" fill="#555555"/>
