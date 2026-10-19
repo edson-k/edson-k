@@ -15,34 +15,34 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="192.78" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="218.78" y="60" width="150.39" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="369.16" y="60" width="55.73" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="424.89" y="60" width="28.66" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="453.55" y="60" width="17.04" height="10" fill="#555555" clip-path="url(#barClip)"/>
-<rect x="470.59" y="60" width="5.81" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
-<rect x="476.40" y="60" width="5.79" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
-<rect x="482.19" y="60" width="5.34" height="10" fill="#89e051" clip-path="url(#barClip)"/>
-<rect x="487.53" y="60" width="4.92" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
-<rect x="492.46" y="60" width="1.54" height="10" fill="#f34b7d" clip-path="url(#barClip)"/>
-<circle cx="32" cy="102" r="5" fill="#3178c6"/>
-<text x="46" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 40.8%</text>
-<circle cx="32" cy="132" r="5" fill="#4F5D95"/>
-<text x="46" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">PHP 31.9%</text>
-<circle cx="32" cy="162" r="5" fill="#f1e05a"/>
-<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 11.8%</text>
-<circle cx="32" cy="192" r="5" fill="#563d7c"/>
-<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 6.1%</text>
-<circle cx="32" cy="222" r="5" fill="#555555"/>
-<text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">C 3.6%</text>
-<circle cx="275" cy="102" r="5" fill="#3572A5"/>
-<text x="289" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Python 1.2%</text>
-<circle cx="275" cy="132" r="5" fill="hsl(292, 65%, 55%)"/>
-<text x="289" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Handlebars 1.2%</text>
-<circle cx="275" cy="162" r="5" fill="#89e051"/>
-<text x="289" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Shell 1.1%</text>
-<circle cx="275" cy="192" r="5" fill="#e34c26"/>
-<text x="289" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">HTML 1.0%</text>
-<circle cx="275" cy="222" r="5" fill="#f34b7d"/>
-<text x="289" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">C++ 0.3%</text>
+<rect x="26.00" y="60" width="317.64" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="343.64" y="60" width="65.72" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="409.36" y="60" width="40.52" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="449.88" y="60" width="32.66" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="482.54" y="60" width="3.72" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
+<rect x="486.26" y="60" width="2.88" height="10" fill="#555555" clip-path="url(#barClip)"/>
+<rect x="489.14" y="60" width="1.79" height="10" fill="#c6538c" clip-path="url(#barClip)"/>
+<rect x="490.94" y="60" width="1.07" height="10" fill="hsl(47, 65%, 55%)" clip-path="url(#barClip)"/>
+<rect x="492.01" y="60" width="1.01" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
+<rect x="493.02" y="60" width="0.98" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
+<circle cx="32" cy="102" r="5" fill="#4F5D95"/>
+<text x="46" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">PHP 67.6%</text>
+<circle cx="32" cy="132" r="5" fill="#f1e05a"/>
+<text x="46" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">JavaScript 14.0%</text>
+<circle cx="32" cy="162" r="5" fill="#563d7c"/>
+<text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 8.6%</text>
+<circle cx="32" cy="192" r="5" fill="#3178c6"/>
+<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 6.9%</text>
+<circle cx="32" cy="222" r="5" fill="#e34c26"/>
+<text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">HTML 0.8%</text>
+<circle cx="275" cy="102" r="5" fill="#555555"/>
+<text x="289" y="107" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">C 0.6%</text>
+<circle cx="275" cy="132" r="5" fill="#c6538c"/>
+<text x="289" y="137" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">SCSS 0.4%</text>
+<circle cx="275" cy="162" r="5" fill="hsl(47, 65%, 55%)"/>
+<text x="289" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Less 0.2%</text>
+<circle cx="275" cy="192" r="5" fill="#3572A5"/>
+<text x="289" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Python 0.2%</text>
+<circle cx="275" cy="222" r="5" fill="hsl(292, 65%, 55%)"/>
+<text x="289" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">Handlebars 0.2%</text>
 </svg>
