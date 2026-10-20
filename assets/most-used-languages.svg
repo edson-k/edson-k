@@ -15,14 +15,14 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="317.64" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="343.64" y="60" width="65.72" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="409.36" y="60" width="40.52" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="449.88" y="60" width="32.66" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="482.54" y="60" width="3.72" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="317.55" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="343.55" y="60" width="65.67" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="409.22" y="60" width="40.51" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="449.73" y="60" width="32.80" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="482.54" y="60" width="3.73" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
 <rect x="486.26" y="60" width="2.88" height="10" fill="#555555" clip-path="url(#barClip)"/>
 <rect x="489.14" y="60" width="1.79" height="10" fill="#c6538c" clip-path="url(#barClip)"/>
-<rect x="490.94" y="60" width="1.07" height="10" fill="hsl(47, 65%, 55%)" clip-path="url(#barClip)"/>
+<rect x="490.93" y="60" width="1.08" height="10" fill="hsl(47, 65%, 55%)" clip-path="url(#barClip)"/>
 <rect x="492.01" y="60" width="1.01" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
 <rect x="493.02" y="60" width="0.98" height="10" fill="hsl(292, 65%, 55%)" clip-path="url(#barClip)"/>
 <circle cx="32" cy="102" r="5" fill="#4F5D95"/>
@@ -32,7 +32,7 @@
 <circle cx="32" cy="162" r="5" fill="#563d7c"/>
 <text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 8.6%</text>
 <circle cx="32" cy="192" r="5" fill="#3178c6"/>
-<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 6.9%</text>
+<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 7.0%</text>
 <circle cx="32" cy="222" r="5" fill="#e34c26"/>
 <text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">HTML 0.8%</text>
 <circle cx="275" cy="102" r="5" fill="#555555"/>
