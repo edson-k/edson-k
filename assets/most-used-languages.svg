@@ -15,10 +15,10 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="316.72" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="342.72" y="60" width="65.86" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="316.70" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="342.70" y="60" width="65.88" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
 <rect x="408.58" y="60" width="40.46" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="449.04" y="60" width="33.54" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="449.04" y="60" width="33.55" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
 <rect x="482.58" y="60" width="3.71" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
 <rect x="486.29" y="60" width="2.87" height="10" fill="#555555" clip-path="url(#barClip)"/>
 <rect x="489.16" y="60" width="1.78" height="10" fill="#c6538c" clip-path="url(#barClip)"/>
