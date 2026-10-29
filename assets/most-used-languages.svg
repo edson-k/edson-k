@@ -15,12 +15,12 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="316.63" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="342.63" y="60" width="65.88" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="408.51" y="60" width="40.46" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="448.97" y="60" width="33.58" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="316.59" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="342.59" y="60" width="65.87" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="408.45" y="60" width="40.46" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="448.91" y="60" width="33.64" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
 <rect x="482.55" y="60" width="3.71" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
-<rect x="486.26" y="60" width="2.87" height="10" fill="#555555" clip-path="url(#barClip)"/>
+<rect x="486.26" y="60" width="2.86" height="10" fill="#555555" clip-path="url(#barClip)"/>
 <rect x="489.13" y="60" width="1.78" height="10" fill="#c6538c" clip-path="url(#barClip)"/>
 <rect x="490.91" y="60" width="1.07" height="10" fill="hsl(47, 65%, 55%)" clip-path="url(#barClip)"/>
 <rect x="491.98" y="60" width="1.05" height="10" fill="#3572A5" clip-path="url(#barClip)"/>
@@ -32,7 +32,7 @@
 <circle cx="32" cy="162" r="5" fill="#563d7c"/>
 <text x="46" y="167" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">CSS 8.6%</text>
 <circle cx="32" cy="192" r="5" fill="#3178c6"/>
-<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 7.1%</text>
+<text x="46" y="197" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">TypeScript 7.2%</text>
 <circle cx="32" cy="222" r="5" fill="#e34c26"/>
 <text x="46" y="227" fill="#D8E1EB" font-family="Segoe UI, Arial, sans-serif" font-size="14">HTML 0.8%</text>
 <circle cx="275" cy="102" r="5" fill="#555555"/>
