@@ -15,11 +15,11 @@
 </defs>
 
 <rect x="26" y="60" width="468" height="10" fill="#30363D" rx="5"/>
-<rect x="26.00" y="60" width="315.04" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
-<rect x="341.04" y="60" width="65.19" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
-<rect x="406.23" y="60" width="40.03" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
-<rect x="446.26" y="60" width="36.44" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
-<rect x="482.69" y="60" width="3.66" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
+<rect x="26.00" y="60" width="314.86" height="10" fill="#4F5D95" clip-path="url(#barClip)"/>
+<rect x="340.86" y="60" width="65.14" height="10" fill="#f1e05a" clip-path="url(#barClip)"/>
+<rect x="406.01" y="60" width="39.99" height="10" fill="#563d7c" clip-path="url(#barClip)"/>
+<rect x="446.00" y="60" width="36.64" height="10" fill="#3178c6" clip-path="url(#barClip)"/>
+<rect x="482.64" y="60" width="3.72" height="10" fill="#e34c26" clip-path="url(#barClip)"/>
 <rect x="486.36" y="60" width="2.83" height="10" fill="#555555" clip-path="url(#barClip)"/>
 <rect x="489.19" y="60" width="1.76" height="10" fill="#c6538c" clip-path="url(#barClip)"/>
 <rect x="490.95" y="60" width="1.06" height="10" fill="hsl(47, 65%, 55%)" clip-path="url(#barClip)"/>
